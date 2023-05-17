@@ -1,0 +1,8 @@
+.list-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    max-width: 120px;
+}

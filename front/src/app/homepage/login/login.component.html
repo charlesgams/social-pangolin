@@ -1,0 +1,25 @@
+<article class="login-component">
+    <header>
+        Login
+    </header>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input 
+            id="login-username" 
+            type="text" 
+            formControlName="username"
+            placeholder="Username"
+        >
+        <input 
+            id="login-password" 
+            type="password" 
+            formControlName="password"
+            placeholder="Password"    
+        >
+        <button 
+            type="submit" 
+            [disabled]="!loginForm.valid"
+        >
+            Login
+        </button>
+    </form>
+</article>

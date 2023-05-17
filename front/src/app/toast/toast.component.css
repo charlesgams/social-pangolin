@@ -1,0 +1,17 @@
+.toast {
+    max-width: 500px;
+    position: fixed;
+    padding: 8px;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 52px
+}
+
+.success {
+    background-color: green;
+}
+
+.error {
+    background-color: red;
+}

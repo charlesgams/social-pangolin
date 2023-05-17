@@ -1,0 +1,13 @@
+<form [formGroup]="roleForm" (submit)="onSubmit()">
+    <select 
+        formControlName="role" 
+        id="role"
+    >
+        <option value="Guerrier">Guerrier</option>
+        <option value="Alchimiste">Alchimiste</option>
+        <option value="Sorcier">Sorcier</option>
+        <option value="Espions">Espions</option>
+        <option value="Enchanteur">Enchanteur</option>
+    </select>
+    <button type="submit" [disabled]="!roleForm.valid">Change</button>
+</form>

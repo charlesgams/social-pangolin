@@ -1,0 +1,36 @@
+<article class="register-component">
+    <header>
+        Inscription
+    </header>
+    <form [formGroup]="registerForm" (submit)="onSubmit()">
+        <input 
+            id="register-username"
+            type="text"
+            formControlName="username"
+            placeholder="Pseudo"
+        >
+        <select 
+            formControlName="role" 
+            id="register-role"
+        >
+            <option value="Guerrier">Guerrier</option>
+            <option value="Alchimiste">Alchimiste</option>
+            <option value="Sorcier">Sorcier</option>
+            <option value="Espions">Espions</option>
+            <option value="Enchanteur">Enchanteur</option>
+        </select>
+        <input 
+            id="register-password" 
+            type="password" 
+            formControlName="password"
+            placeholder="Mot de passe"    
+        >
+        <input 
+            id="register-confirm-password" 
+            type="password" 
+            formControlName="confirmPassword"
+            placeholder="Confirmer mot de passe"    
+        >
+        <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </form>
+</article>

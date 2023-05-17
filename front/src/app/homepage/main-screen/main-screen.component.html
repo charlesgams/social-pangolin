@@ -1,0 +1,27 @@
+
+<article>
+    <header>
+        Ajouter des pangolin
+    </header>
+
+    
+    <ng-template ngFor let-user [ngForOf]="users">
+        <div class="list-item">
+            <p>{{user.username}} | {{user.role}}</p>
+            <button (click)="addFriend(user._id)">Add</button>
+        </div>
+    </ng-template>
+</article>
+
+<article>
+    <header>
+        Liste des amis pangolin
+    </header>
+
+    <ng-template ngFor let-friend [ngForOf]="friends">
+        <div class="list-item">
+            <p>{{friend.username}} | {{friend.role}}</p>
+            <button (click)="removeFriend(friend._id)">Remove</button>
+        </div>
+    </ng-template>
+</article>

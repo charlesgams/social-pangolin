@@ -1,0 +1,11 @@
+<header>
+    <a routerLink="/" class="site-title">
+        <h4>Social Pangolin</h4>
+    </a>
+
+    <div class="right-section">
+        <p *ngIf="auth.isLogin">{{ auth.userInfo.username }} | {{ auth.userInfo.role }}</p>
+        <a routerLink="/settings" *ngIf="auth.isLogin">Settings</a>
+        <button *ngIf="auth.isLogin" (click)="auth.onDisconnect()">Deconnexion</button>
+    </div>
+</header>

@@ -1,0 +1,7 @@
+<div class="toast success" *ngIf="toast.isActive && (toast.type === 'success')">
+    {{ toast.message }}
+</div>
+
+<div class="toast error" *ngIf="toast.isActive && (toast.type === 'error')">
+    {{ toast.message }}
+</div>
