@@ -11,8 +11,6 @@ export class ToastService {
   type: string = ""
 
   show(message: string, type: string) {
-    console.log(message)
-
     this.isActive = true
 
     this.message = message
