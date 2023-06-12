@@ -23,8 +23,6 @@ export class RequestService {
       const { error } = err.error
       const message = error || err.statusText
 
-      console.log(err)
-
       this.toast.show(message, "error")
       return throwError(() => new Error(err));
     })

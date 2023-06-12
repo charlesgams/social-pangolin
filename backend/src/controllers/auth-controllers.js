@@ -34,8 +34,6 @@ async function registerExternController(req, res, next) {
             req.body.role
         )
 
-        console.log(req.user)
-
         await FriendServices.addFriend(
             req.user._id,
             userId
@@ -43,7 +41,6 @@ async function registerExternController(req, res, next) {
 
         return res.json({message: "sucess"})
     } catch (error) {
-        console.log(error)
         next(error)
     }
 }
