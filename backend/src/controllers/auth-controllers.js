@@ -1,4 +1,5 @@
 const AuthServices = require('../services/auth-services')
+const FriendServices = require('../services/friend-services')
 
 async function registerController(req, res, next) {
     try {
@@ -25,4 +26,26 @@ async function loginController(req, res, next) {
     }
 }
 
-module.exports = { registerController, loginController }
+async function registerExternController(req, res, next) {
+    try {
+        const userId = await AuthServices.register(
+            req.body.username, 
+            req.body.password, 
+            req.body.role
+        )
+
+        console.log(req.user)
+
+        await FriendServices.addFriend(
+            req.user._id,
+            userId
+        )
+
+        return res.json({message: "sucess"})
+    } catch (error) {
+        console.log(error)
+        next(error)
+    }
+}
+
+module.exports = { registerController, loginController,registerExternController }

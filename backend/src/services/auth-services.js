@@ -8,6 +8,11 @@ class AuthServices {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hash = bcrypt.hashSync(password, salt);
 
+        const isExists = await User.exists({username})
+
+        if(isExists)
+            throw "User already exists"
+
         const user = new User({
             username,
             password: hash,
@@ -15,6 +20,8 @@ class AuthServices {
         })
 
         await user.save()
+
+        return user._id
     }
 
     static async login(username, reqPassword) {

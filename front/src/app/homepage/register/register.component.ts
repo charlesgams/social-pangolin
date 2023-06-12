@@ -11,6 +11,8 @@ export class RegisterComponent {
 
   constructor(private auth: AuthService) {}
 
+  @Input() isExtern = false
+
   registerForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -27,6 +29,10 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    this.auth.onRegister(this.registerForm.value)
+    if(!this.isExtern)
+      this.auth.onRegister(this.registerForm.value)
+    else {
+      this.auth.onRegisterExtern(this.registerForm.value)
+    }
   }
 }

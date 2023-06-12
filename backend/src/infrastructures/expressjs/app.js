@@ -22,7 +22,8 @@ app.use('/users', userRoutes)
 app.use('/friends', friendRoutes)
 
 app.use((err, req, res, next) => {
-    return res.status(500).json({error: err.message})
+    console.log(err)
+    return res.status(500).json({error: err.message || err})
 })
 
 module.exports = app

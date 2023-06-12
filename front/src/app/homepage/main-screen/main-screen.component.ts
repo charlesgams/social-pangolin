@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { remove } from 'lodash';
 import { RequestService } from 'src/app/services/request.service';
+import { FriendService } from 'src/app/services/friend.service';
+
 
 @Component({
   selector: 'app-main-screen',
@@ -8,32 +9,23 @@ import { RequestService } from 'src/app/services/request.service';
   styleUrls: ['./main-screen.component.css']
 })
 export class MainScreenComponent {
-  constructor(private request: RequestService) { }
+  constructor(private request: RequestService, public friend: FriendService) { }
 
-  users: Array<any> = []
-  friends: Array<any> = []
+  showModal: boolean = false
 
   ngOnInit() {
-    this.request.get('/friends/get-users')
-      .subscribe((result: any) => this.users = result);
+    this.friend.getUsers()
+  }
 
-    this.request.get('/users/get-friends')
-      .subscribe((result: any) => this.friends = result);
+  toggleModdal() {
+    this.showModal = !this.showModal
   }
 
   addFriend(friendId: any) {
-    this.request.post('/friends/add-friend', {friendId})
-      .subscribe((result: any) => {
-        const el = remove(this.users, (user: any) => user._id === friendId)
-        this.friends.push(el[0])
-      });
+    this.friend.addFriend(friendId)
   }
 
   removeFriend(friendId: any) {
-    this.request.put('/friends/remove-friend', {friendId})
-      .subscribe((result: any) => {
-        const el = remove(this.friends, (user: any) => user._id === friendId)
-        this.users.push(el[0])
-      });
+    this.friend.removeFriend(friendId)
   }
 }

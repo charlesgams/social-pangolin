@@ -18,10 +18,14 @@ export class RequestService {
       'Content-Type':  'application/json'
     })
   };
-  
+
   handleError = () => catchError( err => {
       const { error } = err.error
-      this.toast.show(error, "error")
+      const message = error || err.statusText
+
+      console.log(err)
+
+      this.toast.show(message, "error")
       return throwError(() => new Error(err));
     })
 

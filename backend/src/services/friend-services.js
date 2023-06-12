@@ -14,6 +14,13 @@ class FriendServices {
     }
 
     static async addFriend(userId, friendId) {
+
+        await User.findByIdAndUpdate(friendId, { 
+            $push: { 
+                friends: userId
+            } 
+        })
+
         return await User.findByIdAndUpdate(userId, { 
             $push: { 
                 friends: friendId
@@ -22,6 +29,13 @@ class FriendServices {
     }
 
     static async removeFriend(userId, friendId) {
+
+        await User.findByIdAndUpdate( friendId, { 
+            $pull: { 
+                friends: convertStringToObjectId(userId) 
+            } 
+        })
+
         return await User.findByIdAndUpdate( userId, { 
             $pull: { 
                 friends: convertStringToObjectId(friendId) 

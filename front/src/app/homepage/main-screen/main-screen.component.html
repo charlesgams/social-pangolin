@@ -2,10 +2,11 @@
 <article>
     <header>
         Ajouter des pangolin
+        <button (click)="toggleModdal()">Add extern</button>
     </header>
 
-    
-    <ng-template ngFor let-user [ngForOf]="users">
+
+    <ng-template ngFor let-user [ngForOf]="this.friend.users">
         <div class="list-item">
             <p>{{user.username}} | {{user.role}}</p>
             <button (click)="addFriend(user._id)">Add</button>
@@ -18,10 +19,17 @@
         Liste des amis pangolin
     </header>
 
-    <ng-template ngFor let-friend [ngForOf]="friends">
+    <ng-template ngFor let-friend [ngForOf]="this.friend.friends">
         <div class="list-item">
             <p>{{friend.username}} | {{friend.role}}</p>
             <button (click)="removeFriend(friend._id)">Remove</button>
         </div>
     </ng-template>
 </article>
+
+<div *ngIf="showModal" class="modal-signup">
+  <button (click)="toggleModdal()">Close</button>
+  <app-register [isExtern]="true"></app-register>
+</div>
+
+
